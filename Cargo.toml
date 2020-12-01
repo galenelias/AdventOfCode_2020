@@ -1,0 +1,13 @@
+[package]
+name = "advent_of_code_2020"
+version = "0.1.0"
+authors = ["Galen Elias <gelias@gmail.com>"]
+
+[dependencies]
+clap = "*"
+regex = "*"
+itertools = "*"
+
+[[bin]]
+name = "aoc"
+path = "src/main.rs"
