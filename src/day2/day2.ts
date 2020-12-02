@@ -1,4 +1,3 @@
-
 import { getPuzzleInput } from '../util/input.js'
 
 export async function run() {
@@ -16,16 +15,7 @@ export async function run() {
 			valid_passwords_1++;
 		}
 
-		let pt2_matches = 0;
-		if (password[+range1 - 1] == pwd_letter) {
-			pt2_matches++;
-		}
-
-		if (password[+range2 - 1] == pwd_letter) {
-			pt2_matches++;
-		}
-
-		if (pt2_matches == 1) {
+		if ((password[+range1 - 1] == pwd_letter) !== (password[+range2 - 1] == pwd_letter)) {
 			valid_passwords_2++;
 		}
 	}
