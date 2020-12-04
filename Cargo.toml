@@ -7,6 +7,7 @@ authors = ["Galen Elias <gelias@gmail.com>"]
 clap = "*"
 regex = "*"
 itertools = "*"
+lazy_static = "1.4.0"
 
 [[bin]]
 name = "aoc"

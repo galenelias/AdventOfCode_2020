@@ -4,6 +4,9 @@ import { getPuzzleInput } from '../util/input.js'
 export async function run() {
 	const inputs = await getPuzzleInput();
 
+	// Add sentinel to end to maksure final field gets processed
+	inputs.push("");
+
 	let fields: string[] = [];
 	let valid_part1 = 0;
 	let valid_part2 = 0;
