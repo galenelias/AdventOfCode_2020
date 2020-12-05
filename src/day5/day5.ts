@@ -20,7 +20,7 @@ export async function run() {
 		for (const ch of line.slice(7)) {
 			col_dist /= 2;
 			if (ch == 'R') {
-				col_min = col_min + col_dist;
+				col_min += col_dist;
 			}
 		}
 
