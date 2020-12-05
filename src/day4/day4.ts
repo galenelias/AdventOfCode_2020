@@ -7,16 +7,20 @@ export async function run() {
 	// Add sentinel to end to maksure final field gets processed
 	inputs.push("");
 
-	let fields: string[] = [];
 	let valid_part1 = 0;
 	let valid_part2 = 0;
-	for (let i = 0; i < inputs.length; ++i) {
-		if (inputs[i].length == 0) {
+	let fields: string[] = [];
+
+	for (const line of inputs) {
+		if (line.length > 0) {
+			fields.push(...line.split(" "));
+		} else {
 			let map = new Map<string, string>();
 			for (let f of fields) {
 				const p = f.split(":");
 				map.set(p[0], p[1]);
 			}
+
 			if (map.size == 8 || (map.size == 7 && !map.has("cid"))) {
 				valid_part1++;
 
@@ -40,9 +44,7 @@ export async function run() {
 				}
 			}
 
-			fields = [];
-		} else {
-			fields.push(...inputs[i].split(" "));
+			fields = []; // Reset the fields for the next passport
 		}
 	}
 	console.log("Part 1:", valid_part1);
