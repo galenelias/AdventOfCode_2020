@@ -19,7 +19,7 @@ export async function run() {
 			for (const ch of line) {
 				letter_freqs[charOrd(ch)]++;
 			}
-		} else {
+		} else if (group_size > 0) {
 			part1 += letter_freqs.filter((c) => c > 0).length;
 			part2 += letter_freqs.filter((c) => c == group_size).length;
 
