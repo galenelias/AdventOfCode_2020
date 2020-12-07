@@ -16,7 +16,7 @@ pub fn solve(mut inputs: Vec<String>) {
 			for ch in line {
 				letter_freqs[ch as usize - 'a' as usize] += 1;
 			}
-		} else {
+		} else if group_size > 0 {
 			part1 += letter_freqs.iter().filter(|&c| *c > 0).count();
 			part2 += letter_freqs.iter().filter(|&c| *c == group_size).count();
 
