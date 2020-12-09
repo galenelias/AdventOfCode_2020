@@ -20,18 +20,20 @@ export async function run() {
 		if (!found) {
 			console.log("Part 1:", num);
 
-			for (let j = 0; j < inputs.length; j++) {
-				for (let k = j + 1; k < inputs.length; k++) {
-					const jk_slice = inputs.slice(j, k);
-					const sum = jk_slice.reduce((acc, v) => acc + v);
-					if (sum > num) {
-						break;
-					} else if (sum == num) {
-						console.log("Part 2:", Math.min(...jk_slice) + Math.max(...jk_slice));
-						return;
-					}
+			let j = 0;
+			let k = 0;
+			let sum = 0;
+
+			while (sum !== num) {
+				if (sum < num) {
+					sum += inputs[k++];
+				} else if (sum > num) {
+					sum -= inputs[j++];
 				}
 			}
+			const jk_slice = inputs.slice(j, k);
+			console.log("Part 2:", Math.min(...jk_slice) + Math.max(...jk_slice));
+			break;
 		}
 	}
 }
