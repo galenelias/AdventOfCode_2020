@@ -17,9 +17,9 @@ export async function getPuzzleInput(): Promise<string[]> {
 	const myArgs = process.argv.slice(2);
 	if (myArgs.length > 0) {
 		var data = fs.readFileSync(myArgs[0]).toString("utf8");
-		return data.split('\n');
+		return data.trimEnd().split('\n');
 	} else {
 		const stdin = await read(process.stdin);
-		return stdin.split('\n');
+		return stdin.trimEnd().split('\n');
 	}
 }
