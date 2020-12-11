@@ -32,11 +32,9 @@ function count_adjacent2(inputs: string[][], in_r: number, in_c: number): number
 	let count = 0;
 	for (let dr of [-1, 0, 1]) {
 		for (let dc of [-1, 0, 1]) {
-			let r = in_r;
-			let c = in_c;
 			if (dr !== 0 || dc !== 0) {
-				r += dr;
-				c += dc;
+				let r = in_r + dr;
+				let c = in_c + dc;
 
 				// Project along dr/dc vector until we hit a non-blank
 				while (!is_outside(inputs, r, c) && inputs[r][c] == '.') {
