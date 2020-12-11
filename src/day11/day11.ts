@@ -13,15 +13,7 @@ function get(inputs: string[][], r: number, c: number): string {
 }
 
 function count_seats(grid: string[][]): number {
-	let seats = 0;
-	for (let r = 0; r < grid.length; r++) {
-		for (let c = 0; c < grid[r].length; c++) {
-			if (grid[r][c] == '#') {
-				seats++;
-			}
-		}
-	}
-	return seats;
+	return grid.flat().filter(ch => ch == '#').length;
 }
 
 function count_adjacent(inputs: string[][], r: number, c: number): number {
