@@ -13,4 +13,4 @@ Repository for Advent of Code 2020 solutions (learning TypeScript)
 | [Day 7: Handy Haversacks](https://adventofcode.com/2020/day/7)    | [✔](src/day7/day7.ts)   | [✔](src/day7/mod.rs)  |
 | [Day 8: Handheld Halting](https://adventofcode.com/2020/day/8)    | [✔](src/day8/day8.ts)   | [✔](src/day8/mod.rs)  |
 | [Day 9: Encoding Error](https://adventofcode.com/2020/day/9)      | [✔](src/day9/day9.ts)   | [✔](src/day9/mod.rs)  |
-| [Day 10: Adapter Array](https://adventofcode.com/2020/day/10)     | [✔](src/day10/day10.ts) |                       |
+| [Day 10: Adapter Array](https://adventofcode.com/2020/day/10)     | [✔](src/day10/day10.ts) | [✔](src/day10/mod.rs) |
