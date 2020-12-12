@@ -14,5 +14,5 @@ Repository for Advent of Code 2020 solutions (learning TypeScript)
 | [Day 8: Handheld Halting](https://adventofcode.com/2020/day/8)    | [✔](src/day8/day8.ts)   | [✔](src/day8/mod.rs)  |
 | [Day 9: Encoding Error](https://adventofcode.com/2020/day/9)      | [✔](src/day9/day9.ts)   | [✔](src/day9/mod.rs)  |
 | [Day 10: Adapter Array](https://adventofcode.com/2020/day/10)     | [✔](src/day10/day10.ts) | [✔](src/day10/mod.rs) |
-| [Day 11: Seating System](https://adventofcode.com/2020/day/11)    | [✔](src/day11/day11.ts) |                       |
+| [Day 11: Seating System](https://adventofcode.com/2020/day/11)    | [✔](src/day11/day11.ts) | [✔](src/day11/mod.rs) |
 | [Day 12: Rain Risk](https://adventofcode.com/2020/day/12)         | [✔](src/day12/day12.ts) |                       |
