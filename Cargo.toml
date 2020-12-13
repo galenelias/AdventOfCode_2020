@@ -8,6 +8,7 @@ clap = "*"
 regex = "*"
 itertools = "*"
 lazy_static = "1.4.0"
+num = "0.3"
 
 [[bin]]
 name = "aoc"
