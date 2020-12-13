@@ -2,61 +2,23 @@ use itertools::Itertools;
 use num::integer::lcm;
 
 pub fn solve(inputs: Vec<String>) {
+	let leave_time = inputs[0].parse::<usize>().unwrap();
+	// buses = vector<(index, bus_id)> with 'x' values removed
 	let buses = inputs[1].split(',').enumerate().filter(|(_, v)| v != &"x").map(|(i, v)| (i, v.parse::<usize>().unwrap())).collect_vec();
 
-	println!("{:?}", buses);
+	// Part 1
+	let wait_time = |bus_id| (bus_id - (leave_time % bus_id));
+	let best_bus_id = buses.iter().min_by_key(|(_, b)| wait_time(b)).unwrap().1;
+	println!("Part 1: {:?}", best_bus_id * wait_time(&best_bus_id));
 
-	let first_bus = buses[0].1;
-	let (max_bus_idx, max_bus) = buses.iter().max_by_key(|(_, v)| v).unwrap();
-	println!("{:?} {}", max_bus, max_bus_idx);
-
+	// Part 2
 	let mut val = 0;
-	println!("Skipping by {}", max_bus);
-	loop {
-		val += max_bus;
-		if ((val - max_bus_idx) % first_bus) != 0 {
-			continue;
+	let mut increment = 1;
+	for (bus_offset, bus_id) in &buses {
+		while ((val + bus_offset) % bus_id) != 0 {
+			val += increment;
 		}
-
-		let lcm = lcm(first_bus, *max_bus);
-		println!("Skipping by {}", lcm);
-
-		loop {
-			let mut valid = true;
-			for (i, bus) in buses.iter().skip(1) {
-				if ((val + i - max_bus_idx) % bus) != 0 {
-					valid = false;
-					break;
-				}
-			}
-
-			if valid {
-				println!("Part 2: {}", val - max_bus_idx);
-				// break;
-				return;
-			}
-			val += lcm;
-		}
+		increment = lcm(increment, *bus_id);
 	}
-
-	// let mut val = 0;
-	// loop {
-	// 	val += max_bus;
-	// 	if ((val - max_bus_idx) % first_bus) != 0 {
-	// 		continue;
-	// 	}
-
-	// 	let mut valid = true;
-	// 	for (i, bus) in buses.iter().skip(1) {
-	// 		if ((val + i - max_bus_idx) % bus) != 0 {
-	// 			valid = false;
-	// 			break;
-	// 		}
-	// 	}
-
-	// 	if valid {
-	// 		println!("Part 2: {}", val - max_bus_idx);
-	// 		// break;
-	// 	}
-	// }
+	println!("Part 2: {}", val);
 }
