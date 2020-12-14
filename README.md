@@ -17,3 +17,4 @@ Repository for Advent of Code 2020 solutions (learning TypeScript)
 | [Day 11: Seating System](https://adventofcode.com/2020/day/11)    | [✔](src/day11/day11.ts) | [✔](src/day11/mod.rs) |
 | [Day 12: Rain Risk](https://adventofcode.com/2020/day/12)         | [✔](src/day12/day12.ts) | [✔](src/day12/mod.rs) |
 | [Day 13: Shuttle Search](https://adventofcode.com/2020/day/13)    | [✔](src/day13/day13.ts) | [✔](src/day13/mod.rs) |
+| [Day 14: Docking Data](https://adventofcode.com/2020/day/14)      | [✔](src/day14/day14.ts) | [✔](src/day14/mod.rs) |
