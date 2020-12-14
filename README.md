@@ -15,4 +15,5 @@ Repository for Advent of Code 2020 solutions (learning TypeScript)
 | [Day 9: Encoding Error](https://adventofcode.com/2020/day/9)      | [✔](src/day9/day9.ts)   | [✔](src/day9/mod.rs)  |
 | [Day 10: Adapter Array](https://adventofcode.com/2020/day/10)     | [✔](src/day10/day10.ts) | [✔](src/day10/mod.rs) |
 | [Day 11: Seating System](https://adventofcode.com/2020/day/11)    | [✔](src/day11/day11.ts) | [✔](src/day11/mod.rs) |
-| [Day 12: Rain Risk](https://adventofcode.com/2020/day/12)         | [✔](src/day12/day12.ts) |                       |
+| [Day 12: Rain Risk](https://adventofcode.com/2020/day/12)         | [✔](src/day12/day12.ts) | [✔](src/day12/mod.rs) |
+| [Day 13: Shuttle Search](https://adventofcode.com/2020/day/13)    | [✔](src/day13/day13.ts) | [✔](src/day13/mod.rs) |
