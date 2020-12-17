@@ -8,17 +8,10 @@ struct Coord {
 }
 
 fn count_neighbors(grid: &HashSet<Coord>, pt: &Coord, part: usize) -> usize {
-	if part == 1 {
-		(0..3).map(|_| -1..=1)
-				.multi_cartesian_product().filter(|p| p.iter().any(|v| v != &0))
-				.filter(|d| grid.contains(&Coord{x: pt.x + d[0], y: pt.y + d[1], z: pt.z + d[2], w: pt.w}))
-				.count()
-	} else {
-		(0..4).map(|_| -1..=1)
-				.multi_cartesian_product().filter(|p| p.iter().any(|v| v != &0))
-				.filter(|d| grid.contains(&Coord{x: pt.x + d[0], y: pt.y + d[1], z: pt.z + d[2], w: pt.w + d[3]}))
-				.count()
-	}
+	(0..4).map(|_| -1..=1)
+			.multi_cartesian_product().filter(|d| d.iter().any(|d| d != &0) && (part == 2 || d[3] == 0))
+			.filter(|d| grid.contains(&Coord{x: pt.x + d[0], y: pt.y + d[1], z: pt.z + d[2], w: pt.w + d[3]}))
+			.count()
 }
 
 pub fn solve(inputs: Vec<String>) {
