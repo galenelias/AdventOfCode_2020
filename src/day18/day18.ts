@@ -1,4 +1,3 @@
-import { assert } from 'console';
 import { getPuzzleInput } from '../util/input.js'
 
 function isCharDigit(c: string){
@@ -6,151 +5,76 @@ function isCharDigit(c: string){
 }
 
 interface Context {
-	operand: number | null;
-	operator: string | null;
-}
-
-function emptyContext(): Context {
-	return {
-		operand: null,
-		operator: null,
-	};
-}
-
-function eval_expr(input: string): number {
-	let stack: Context[] = [];
-	let ctx = emptyContext();
-	for (let i = 0; i < input.length; i++) {
-		let ch = input[i];
-
-		if (ch === '(') {
-			stack.push(ctx);
-			ctx = emptyContext();
-		} else if (ch === '+' || ch === '*') {
-			assert(ctx.operator === null);
-			ctx.operator = ch;
-		} else if (ch === ' ') {
-			// no-op
-		} else {
-			let num:number = 0;
-
-			if (isCharDigit(ch)) {
-				num = +ch;
-			} else if (ch === ')') {
-				assert(ctx.operator === null);
-				assert(ctx.operand !== null);
-				num = ctx.operand!;
-				ctx = stack.pop()!;
-			} else {
-				throw new Error("Unexpected");
-			}
-
-			if (ctx.operator !== null) {
-				let op = ctx.operator;
-				ctx.operator = null;
-				if (ctx.operand === null) {
-					throw new Error("Unexpected");
-				}
-				if (op == '+') {
-					ctx.operand! += num;
-				} else if (op == '*') {
-					ctx.operand! *= num;
-				}
-			} else {
-				ctx.operand = num;
-			}
-		}
-	}
-
-	// console.log(`Eval ${input} = ${ctx.operand!}`);
-	return ctx.operand!;
-}
-
-interface Context2 {
 	operands: number[];
 	operators: string[];
 }
 
-function emptyContext2(): Context2 {
+function emptyContext(): Context {
 	return {
 		operands: [],
 		operators: [],
 	};
 }
 
-function eval_expr2(input: string): number {
-	let stack: Context2[] = [];
-	let ctx = emptyContext2();
-	input = "(" + input + ")";
+function doTopOperation(ctx: Context) {
+	const op = ctx.operators.pop();
+	const val1 = ctx.operands.pop()!;
+	const val2 = ctx.operands.pop()!;
+	if (op === '+') {
+		ctx.operands.push(val1 + val2);
+	} else {
+		ctx.operands.push(val1 * val2);
+	}
+
+}
+
+function eval_expr2(input: string, precedence: Map<string, number>): number {
+	let stack: Context[] = [];
+	let ctx = emptyContext();
+	input = "(" + input + ")"; // Wrap input in parens to simplify logic
 	for (let i = 0; i < input.length; i++) {
-		let ch = input[i];
+		const ch = input[i];
 
 		if (ch === ' ') {
 			// no-op
 		} else if (ch === '(') {
 			stack.push(ctx);
-			ctx = emptyContext2();
+			ctx = emptyContext();
 		} else if (ch === '+' || ch === '*') {
-			if (ctx.operators.length > 0) {
-				const top_op = ctx.operators[ctx.operators.length-1];
-				if (top_op === '+' || (ch === '*' && top_op === '*')) {
-					let val1 = ctx.operands.pop()!;
-					let val2 = ctx.operands.pop()!;
-					if (top_op === '+') {
-						ctx.operands.push(val1 + val2);
-					} else {
-						ctx.operands.push(val1 * val2);
-					}
-					ctx.operators.pop();
-				}
+			// Process all pending operations with higher or equal precedence as incoming operator
+			while (ctx.operators.length > 0 && precedence.get(ctx.operators.slice(-1)[0])! >= precedence.get(ch)!) {
+				doTopOperation(ctx);
 			}
 
 			ctx.operators.push(ch);
-		} else {
-			let num:number = 0;
-
-			if (isCharDigit(ch)) {
-				num = +ch;
-			} else if (ch === ')') {
-				while (ctx.operators.length > 0) {
-					const top_op = ctx.operators.pop();
-					let val1 = ctx.operands.pop()!;
-					let val2 = ctx.operands.pop()!;
-					if (top_op === '+') {
-						ctx.operands.push(val1 + val2);
-					} else {
-						ctx.operands.push(val1 * val2);
-					}
-				}
-
-				// TODO: Evaluate
-				num = ctx.operands[0];
-				ctx = stack.pop()!;
-			} else {
-				throw new Error("Unexpected");
+		} else if (isCharDigit(ch)) {
+			ctx.operands.push(+ch);
+		} else if (ch === ')') {
+			// Process all remaining operations
+			while (ctx.operators.length > 0) {
+				doTopOperation(ctx);
 			}
 
-			ctx.operands.push(num);
+			const result = ctx.operands[0];
+			ctx = stack.pop()!;
+			ctx.operands.push(result);
+		} else {
+			throw new Error(`Unexpected token ${ch} on line ${input}`);
 		}
 	}
 
-	// console.log(`Eval ${input} = ${ctx.operands[0]}`);
 	return ctx.operands[0]!;
 }
 
 async function run() {
 	const inputs = await getPuzzleInput();
 
-	let part1 = 0;
-	for (const line of inputs) {
-		part1 += eval_expr(line);
-	}
+	const part1Precedence = new Map<string, number>([['+', 1], ['*', 1]]);
+	const part1 = inputs.map(line => eval_expr2(line, part1Precedence)).reduce((a,b) => a + b);
 	console.log("Part 1:", part1);
 
-	let part2 = 0;
-	for (const line of inputs) {
-		part2 += eval_expr2(line);
-	}
+	const part2Precedence = new Map<string, number>([['+', 2], ['*', 1]]);
+	const part2 = inputs.map(line => eval_expr2(line, part2Precedence)).reduce((a,b) => a + b);
 	console.log("Part 2:", part2);
 }
 
