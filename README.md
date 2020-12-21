@@ -21,3 +21,7 @@ Repository for Advent of Code 2020 solutions (learning TypeScript)
 | [Day 15: Rambunctious Recitation](https://adventofcode.com/2020/day/15) | [✔](src/day15/day15.ts) | [✔](src/day15/mod.rs) |
 | [Day 16: Ticket Translation](https://adventofcode.com/2020/day/16)| [✔](src/day16/day16.ts) |                       |
 | [Day 17: Conway Cubes](https://adventofcode.com/2020/day/17)      | [✔](src/day17/day17.ts) | [✔](src/day17/mod.rs) |
+| [Day 18: Operation Order](https://adventofcode.com/2020/day/18)   | [✔](src/day18/day18.ts) |                       |
+| [Day 19: Monster Messages](https://adventofcode.com/2020/day/19)  | [✔](src/day19/day19.ts) |                       |
+| [Day 20: Jurassic Jigsaw](https://adventofcode.com/2020/day/20)   | [✔](src/day20/day20.ts) |                       |
+| [Day 21: Allergen Assessment](https://adventofcode.com/2020/day/21) | [✔](src/day21/day21.ts) |                       |
