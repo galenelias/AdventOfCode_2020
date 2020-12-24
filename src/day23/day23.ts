@@ -27,19 +27,22 @@ function run_game(cups: number[], is_part1: boolean, cups_fill_amt: number, iter
 
 	let current = cups[0];
 	for (let move = 0; move < iterations; move++) {
-		let three_cups = [ll[current], ll[ll[current]], ll[ll[ll[current]]]];
-		ll[current] = ll[three_cups[2]]; // Re-link current to the end of our three cup chain
+		const card1 = ll[current];
+		const card2 = ll[card1];
+		const card3 = ll[card2];
+
+		ll[current] = ll[card3]; // Re-link current to the end of our three cup chain
 
 		let dest_cup = current -1;
 		if (dest_cup === 0) {
 			dest_cup = ll.length - 1;
 		}
-		while (three_cups.find(v => v === dest_cup)) {
+		while (dest_cup === card1 || dest_cup === card2 || dest_cup === card3) {
 			dest_cup = (dest_cup === 1) ? ll.length - 1 : dest_cup - 1;
 		}
 
-		ll[three_cups[2]] = ll[dest_cup];
-		ll[dest_cup] = three_cups[0];
+		ll[card3] = ll[dest_cup];
+		ll[dest_cup] = card1;
 		current = ll[current];
 	}
 
