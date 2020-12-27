@@ -26,3 +26,6 @@ Repository for Advent of Code 2020 solutions (learning TypeScript)
 | [Day 20: Jurassic Jigsaw](https://adventofcode.com/2020/day/20)   | [✔](src/day20/day20.ts) |                       |
 | [Day 21: Allergen Assessment](https://adventofcode.com/2020/day/21) | [✔](src/day21/day21.ts) |                       |
 | [Day 22: Crab Combat](https://adventofcode.com/2020/day/22)       | [✔](src/day22/day22.ts) |                       |
+| [Day 23: Crab Cups](https://adventofcode.com/2020/day/23)         | [✔](src/day23/day23.ts) | [✔](src/day23/mod.rs)  |
+| [Day 24: Lobby Layout](https://adventofcode.com/2020/day/24)      | [✔](src/day24/day24.ts) | [✔](src/day24/mod.rs) |
+| [Day 25: Combo Breaker](https://adventofcode.com/2020/day/25)     | [✔](src/day25/day25.ts) |                       |
